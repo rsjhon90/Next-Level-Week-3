@@ -2,6 +2,8 @@ import express from 'express';
 //express é um framework simples e eficaz para REQ e RES
 //todo backend automaticamente trabalha em requisição e resposta (request, reponse)
 
+import './database/connection';
+
 const app = express();
 
 app.use(express.json());
