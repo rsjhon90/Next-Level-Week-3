@@ -1,6 +1,6 @@
 import express from 'express';
-//express é um framework simples e eficaz para REQ e RES
-//todo backend automaticamente trabalha em requisição e resposta (request, reponse)
+import { getRepository } from 'typeorm';
+import Orphanage from './models/Orphanage';
 
 import './database/connection';
 
@@ -8,24 +8,32 @@ const app = express();
 
 app.use(express.json());
 
-//Rota = por exemplo conjunto
-//Recurso = por exemplo users
+app.post('/orphanages', async (request, response) => {
+  const {
+    name,
+    latitude,
+    longitude,
+    about,
+    instructions,
+    opening_hours,
+    open_on_weekends,
+  } = request.body;
 
-//Métodos HTTP = GET, POST, PUT, DELETE
+  const orphanagesRepository = getRepository(Orphanage);
 
-//GET = Buscar uma informação (lista, item)
-//POST = Criando uma informação
-//PUT = Editando uma informação
-//DELETE = Deletando uma informação
+  const orphanage = orphanagesRepository.create({
+    name,
+    latitude,
+    longitude,
+    about,
+    instructions,
+    opening_hours,
+    open_on_weekends,
+  });
 
-//Parâmetros
-//Query Params (?): http://localhost:3333/users?search=diego (& para concatenar)
-//Route Params = http://localhost:3333/users/1 (identificar um recurso)
-//Body = http://localhost:3333/users (identificar formulário do recurso, com informações compostas)
+  await orphanagesRepository.save(orphanage);
 
-app.get('/users/', (request, response) => {
-
-    return response.json({ message: 'Hello World'});
+  return response.status(201).json(orphanage);
 
 });
 
