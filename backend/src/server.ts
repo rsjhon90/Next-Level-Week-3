@@ -21,13 +21,10 @@ app.use(express.json());
 //Route Params = http://localhost:3333/users/1 (identificar um recurso)
 //Body = http://localhost:3333/users (identificar formulário do recurso, com informações compostas)
 
-app.get('/users/:id', (request, response) => {
-    console.log(request.query);
-    console.log(request.params);
-    console.log(request.body);
+app.get('/users/', (request, response) => {
 
     return response.json({ message: 'Hello World'});
+
 });
 
 app.listen(3333);
-//localhost/3333
