@@ -4,7 +4,28 @@ import express from 'express';
 
 const app = express();
 
-app.get('/users', (request, response) => {
+app.use(express.json());
+
+//Rota = por exemplo conjunto
+//Recurso = por exemplo users
+
+//Métodos HTTP = GET, POST, PUT, DELETE
+
+//GET = Buscar uma informação (lista, item)
+//POST = Criando uma informação
+//PUT = Editando uma informação
+//DELETE = Deletando uma informação
+
+//Parâmetros
+//Query Params (?): http://localhost:3333/users?search=diego (& para concatenar)
+//Route Params = http://localhost:3333/users/1 (identificar um recurso)
+//Body = http://localhost:3333/users (identificar formulário do recurso, com informações compostas)
+
+app.get('/users/:id', (request, response) => {
+    console.log(request.query);
+    console.log(request.params);
+    console.log(request.body);
+
     return response.json({ message: 'Hello World'});
 });
 
