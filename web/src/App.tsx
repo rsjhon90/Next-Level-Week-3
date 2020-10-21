@@ -4,6 +4,7 @@ import React from 'react';
 // Em react ao invés de usar "class" normalmente para JS, é usado "className"
 // "interface" define um formato, um tipo do objeto
 import './styles/global.css';
+import 'leaflet/dist/leaflet.css';
 
 import Routes from './routes';
 

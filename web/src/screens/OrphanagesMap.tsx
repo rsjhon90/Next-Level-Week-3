@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiPlus } from 'react-icons/fi';
-import { Map, TileLayer} from 'react-leaflet';
+import { FiPlus, FiArrowRight } from 'react-icons/fi';
+import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 
-import 'leaflet/dist/leaflet.css';
+import mapIcon from '../utils/mapIcon';
 
 import mapMarkerImg from '../images/map-marker.svg';
 
@@ -35,10 +35,20 @@ function OrphanagesMap () {
                 <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 {/* <TileLayer url={`https://www.google.com/maps/search/?api=1/{z}/{x}/{y}?access_token=${process.env.REACT_APP_GOOGLEMAPSTOKEN}`}  /> */}
 
-            </Map>
-            
+                <Marker
+                icon={mapIcon}
+                position={[-22.9939708,-43.2522617]}
+                >
+                    <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
+                    Lar das meninas
+                    <Link to="/orphanages/1">
+                        <FiArrowRight size={20} color="#FFF" />
+                    </Link>
+                    </Popup>
+                </Marker>
+            </Map>                   
 
-            <Link to="" className="create-orphanage">
+            <Link to="/orphanages/create" className="create-orphanage">
                 <FiPlus size={32} color="#FFF"/>
             </Link>
 
